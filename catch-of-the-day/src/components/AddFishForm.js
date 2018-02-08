@@ -11,14 +11,15 @@ class AddFishForm extends React.Component {
 			price: this.price.value,
 			status: this.status.value,
 			desc: this.desc.value,
-			image: this.image.value
+			image: this.image.value,
 		}
-		console.log(fish);
+		this.props.addFish(fish);
+		this.fishForm.reset();
 	}
 
 	render () {
 		return (
-			<from className="fish-edit" onSubmit={(e) => this.createFish(e)}>
+			<form ref={(input) => this.fishForm = input} className="fish-edit" onSubmit={(e) => this.createFish(e)}>
 				<input ref={(input) => this.name = input} type="text" placeholder="Fish Name" />
 				<input ref={(input) => this.price = input} type="text" placeholder="Fish Price" />
 				<select ref={(input) => this.status = input}>
@@ -28,7 +29,7 @@ class AddFishForm extends React.Component {
 				<textarea ref={(input) => this.desc = input} placeholder="Fish Desc"></textarea>
 				<input ref={(input) => this.image = input} type="text" placeholder="Fish Image" />
 				<button type="submit">+ Add Item</button>
-			</from>
+			</form>
 		)
 	}
 }
